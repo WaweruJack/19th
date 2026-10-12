@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#26111c" />
+  <title>For Your 19th year ML ♡</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --wine:#34a9ec; --wine-dark:#50131d; --cream:#26111c; --paper:#34192a; --rose:#0ba0e6; --ink:#50b0f0; --gold:#e0b878; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--cream); color:var(--ink); font-family:"DM Sans",sans-serif; overflow-x:hidden; }
+    h1,h2,h3,.serif { font-family:"Playfair Display",serif; }
+    .script { font-family:"Dancing Script",cursive; }
+    .screen { display:none; animation:fadeUp .55s ease both; }
+    .screen.active { display:block; }
+    @keyframes fadeUp { from {opacity:0; transform:translateY(14px)} to {opacity:1;transform:translateY(0)} }
+    @keyframes floaty { 0%,100%{transform:translateY(0) rotate(-4deg)} 50%{transform:translateY(-14px) rotate(5deg)} }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.07)} }
+    @keyframes flap { 0%{transform:rotateX(0)} 100%{transform:rotateX(180deg)} }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    @keyframes drift { 0%{transform:translateY(105vh) rotate(0deg);opacity:0} 10%{opacity:.65} 90%{opacity:.5} 100%{transform:translateY(-12vh) rotate(35deg);opacity:0} }
+    .floating { position:fixed; bottom:-40px; z-index:0; pointer-events:none; animation:drift linear infinite; opacity:.5; }
+    .paper-texture { background-color:var(--cream); background-image:radial-gradient(circle at 20% 0%,#4a1f3a55 0,transparent 55%),radial-gradient(#e8a9b81c 0.7px,transparent .7px); background-size:auto,14px 14px; }
+    .welcome {
+      background-color:var(--wine-dark);
+      background-image:
+        linear-gradient(rgba(131, 2, 2, 0.55), rgba(13, 72, 231, 0.72)),
+        url('images/home-bg.jpg'),
+        radial-gradient(circle at 50% 30%,#7d2a4a 0%,#51192f 50%,#26111c 100%);
+      background-size:cover,cover,cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+    .envelope-wrap { width:min(78vw,340px); aspect-ratio:1.35; position:relative; cursor:pointer; filter:drop-shadow(0 20px 22px #310d1770); transition:transform .6s ease; }
+    .envelope-wrap:hover { transform:translateY(-5px) rotate(-1deg); }
+    .envelope-body { position:absolute; inset:12% 0 0; background:#baa6db; border-radius:8px; overflow:hidden; }
+    .env-left,.env-right { position:absolute; bottom:0; width:0;height:0;border-top:150px solid transparent; }
+    .env-left { left:0;border-left:170px solid #af8fd3;border-bottom:0; }
+    .env-right { right:0;border-right:170px solid #d6a6d8;border-bottom:0; }
+    .env-bottom { position:absolute; bottom:0;left:0;width:0;height:0;border-left:170px solid transparent;border-right:170px solid transparent;border-bottom:145px solid #f8e9d0; }
+    .env-flap { position:absolute;top:12%;left:0;width:0;height:0;border-left:170px solid transparent;border-right:170px solid transparent;border-top:125px solid #d9b98c; transform-origin:top; transition:transform .65s ease; z-index:4; }
+    .wax { position:absolute; z-index:5; top:52%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#c95a62,#7a1725 70%);box-shadow:inset 0 0 0 3px #d77b7b,0 5px 12px #50131d40;display:grid;place-items:center;color:#f9dfc8;font-size:25px;transition:opacity .25s; }
+    .envelope-wrap.open .env-flap { transform:rotateX(180deg); z-index:1; }
+    .envelope-wrap.open .wax { opacity:0; }
+    .envelope-wrap.open { animation:openEnvelope .7s .35s forwards; }
+    @keyframes openEnvelope { to {opacity:0;transform:translateY(-35px) scale(.85);visibility:hidden} }
+    .dashboard-card { background:#34192a; border:1px solid #5c3249; box-shadow:0 8px 25px #0000003a; transition:transform .25s,box-shadow .25s,border-color .25s; }
+    .dashboard-card:hover,.dashboard-card:focus-visible { transform:translateY(-7px) rotate(-1deg);box-shadow:0 16px 35px #e8a9b822;border-color:#e58fa6;outline:none; }
+    .icon-disc { background:#552a3f; border:1px solid #7a4059; }
+    .btn-wine { background:#c2506a;color:#5115c0;transition:all .2s; }
+    .btn-wine:hover { background:#d8607b;transform:translateY(-1px); }
+    .btn-outline { border:1px solid #8c566c;color:#f4b6c4;transition:all .2s; }
+    .btn-outline:hover { background:#4a2538; }
+    .letter-paper { background:#0e0209; background-image:repeating-linear-gradient(transparent 0 35px,#2c0329 36px); box-shadow:0 12px 32px #0692e450; border:1px solid #6a3b57; }
+    .flower { cursor:pointer; transition:transform .none; transform-origin:bottom center; }
+    .flower:hover,.flower:focus-visible { transform:scale(1.12) rotate(-5deg);outline:none; }
+    .petal { fill:#e7b44f; stroke:#c48a32; stroke-width:1.5; }
+    .petal.rose { fill:#c96b76;stroke:#9c4050; }
+    .petal.cream { fill:#f6dca0;stroke:#c79c58; }
+    .flower-note { min-height:64px;transition:opacity .2s; }
+    .polaroid { background:#f1dcd8;padding:10px 10px 35px;box-shadow:0 8px 20px #00000055;transform:rotate(var(--tilt,-3deg));transition:transform .25s;cursor:pointer; }
+    .polaroid:hover { transform:rotate(0) translateY(-5px); }
+    .photo-placeholder { min-height:135px;background:linear-gradient(145deg,#4a2a3a,#5c3449);display:grid;place-items:center;border:1px dashed #9a6479;color:#07b8cf; }
+    .polaroid img { width:100%; aspect-ratio:4/5; object-fit:cover; display:block; background:#4a2a3a; }
+    .polaroid:nth-child(4n+2) { margin-top:20px; } .polaroid:nth-child(4n+4) { margin-top:16px; }
+    #lightbox { position:fixed; inset:0; z-index:100; background:#1f0a0ecc; display:none; align-items:center; justify-content:center; padding:20px; flex-direction:column; gap:14px; }
+    #lightbox.show { display:flex; }
+    #lightbox img { max-width:min(92vw,720px); max-height:78vh; border:10px solid #3805ad; border-bottom-width:10px; box-shadow:0 20px 50px #0008; }
+    #lightbox p { color:#7f66ee; font-size:1.6rem; }
+    .vinyl { width:min(58vw,230px);aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#242124 0 3px,#353136 4px 5px,#19171a 6px 8px);display:grid;place-items:center;box-shadow:0 16px 30px #27131935;cursor:pointer;transition:transform .3s; }
+    .vinyl:hover { transform:scale(1.03); }
+    .vinyl.playing { animation:spin 4s linear infinite; }
+    .vinyl-label { width:35%;aspect-ratio:1;border-radius:50%;background:#b84c58;border:4px solid #e8b8a5;display:grid;place-items:center;color:#fff0d9;font-size:22px; }
+    .music-visual { background:linear-gradient(145deg,#3a1c2e,#4a2440);border:1px solid #6a3b57; }
+    .tiny-heart { color:#d78a91; }
+    .divider-flourish { display:flex;align-items:center;gap:12px;color:#2e6df5; }
+    .divider-flourish:before,.divider-flourish:after { content:"";height:1px;background:#6a3b57;flex:1; }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after {animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important} }
+    .mute-btn { position:fixed; top:max(14px,env(safe-area-inset-top)); right:max(14px,env(safe-area-inset-right)); z-index:60; width:44px; height:44px; border-radius:50%; border:1px solid #e8a9b85a; background:#50131dcc; backdrop-filter:blur(6px); color:var(--ink); display:grid; place-items:center; cursor:pointer; opacity:0; visibility:hidden; transform:scale(.8); transition:opacity .5s, transform .3s, background .2s, visibility .5s; box-shadow:0 6px 16px #0006; }
+    .mute-btn.show { opacity:1; visibility:visible; transform:scale(1); }
+    .mute-btn:hover { background:#741f2b; transform:scale(1.06); }
+    .mute-btn:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+    .mute-btn svg { width:22px; height:22px; }
+    .mute-btn .icon-off { display:none; }
+    .mute-btn.muted .icon-on { display:none; }
+    .mute-btn.muted .icon-off { display:block; }
+  </style>
+</head>
+<body>
+  <audio id="bgSong" src="photos/Fancy Fingers ft. Njerae - Its You (Visualizer) [yp2u1dn-DDs].mp3  " loop preload="auto"></audio>
+  <button id="muteBtn" class="mute-btn" type="button" aria-label="Mute music" aria-pressed="false">
+    <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+    <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6"/><path d="M16 9l6 6"/></svg>
+  </button>
+  <div id="floaties" aria-hidden="true"></div>
+ 
+  <main class="relative z-10">
+
+  <main class="relative z-10">
+    <!-- Welcome / envelope screen -->
+    <section id="welcome" class="screen active welcome min-h-screen text-center text-[#fff8ec] flex flex-col items-center justify-center px-5 py-12">
+      <background image class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image:url('photos/homepage bg.jpg  ');"></background>
+      <p class="uppercase tracking-[.32em] text-xs sm:text-sm text-rose-100/80 mb-5">A little one just for you</p>
+      <h1 class="script text-6xl sm:text-8xl leading-tight mb-2">sweet 19 my goof</h1>
+      <p class="text-sm sm:text-base text-rose-100/90 mb-10">Today, though, I don't want you to spend too much time thinking about responsibilities, school, the future, or all the things you still need to accomplish. Today is your day, my love. Take a moment to appreciate yourself. Celebrate how far you've come. Smile a little more, laugh a little louder, enjoy the people who care about you, and let yourself feel special. You deserve to celebrate the life you've lived so far and the many possibilities waiting ahead of you.♡</p>
+      <button id="openEnvelope" class="envelope-wrap" aria-label="Open your birthday letter">
+        <div class="envelope-body"></div><div class="env-left"></div><div class="env-right"></div><div class="env-bottom"></div><div class="env-flap"></div><div class="wax">♥</div>
+      </button>
+      <p id="envelopeHint" class="mt-8 text-sm tracking-wide text-rose-100/90 animate-pulse">Hutia hauu waniee</p>
+      <div class="absolute bottom-6 text-xs text-rose-100/60 tracking-widest">MADE WITH LOVE · FOR YOUR 19TH</div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="screen paper-texture min-h-screen px-5 py-10 sm:py-16">
+      <div class="max-w-5xl mx-auto">
+        <header class="text-center mb-10 sm:mb-14">
+          <p class="uppercase tracking-[.25em] text-xs text-[#9a625e] mb-3">A little collection of your journey down here</p>
+          <h2 class="text-4xl sm:text-6xl text-[#6e2630] mb-3">kamaaaaaaataa hiiii</h2>
+          <p class="script text-3xl sm:text-4xl text-[#ad7472]">with all my heart ♡</p>
+          <div class="divider-flourish max-w-xs mx-auto mt-6">🌸</div>
+        </header>
+        <div class="grid md:grid-cols-3 gap-5 sm:gap-7">
+          <button class="dashboard-card rounded-2xl p-6 sm:p-8 text-center" data-go="message" aria-label="Open your birthday message">
+            <div class="icon-disc w-20 h-20 rounded-full mx-auto grid place-items-center text-4xl mb-5">✉️</div>
+            <h3 class="text-2xl text-[#6e2630] mb-2">not good with words but have this</h3>
+            <p class="text-sm leading-6 text-[#886c64]">Words I hope you keep close.</p>
+            <span class="inline-block mt-5 text-xs tracking-widest uppercase text-[#9d5e5e]">hutaki kufungua sasa ↗</span>
+          </button>
+          <button class="dashboard-card rounded-2xl p-6 sm:p-8 text-center" data-go="flowers" aria-label="Open your flower bouquet">
+            <div class="icon-disc w-20 h-20 rounded-full mx-auto grid place-items-center text-4xl mb-5">💐</div>
+            <h3 class="text-2xl text-[#6e2630] mb-2">Flowers for you</h3>
+            <p class="text-sm leading-6 text-[#886c64]">Every bloom has something to say.</p>
+            <span class="inline-block mt-5 text-xs tracking-widest uppercase text-[#9d5e5e]">Pick a flower ↗</span>
+          </button>
+          <button class="dashboard-card rounded-2xl p-6 sm:p-8 text-center" data-go="memories" aria-label="Open your scrapbook">
+            <div class="icon-disc w-20 h-20 rounded-full mx-auto grid place-items-center text-4xl mb-5">🎂</div>
+            <h3 class="text-2xl text-[#6e2630] mb-2">Little memories</h3>
+            <p class="text-sm leading-6 text-[#886c64]">A little galleria for you..moments that matter.</p>
+            <span class="inline-block mt-5 text-xs tracking-widest uppercase text-[#9d5e5e]">tweeeeeeendeee naloo↗</span>
+          </button>
+        </div>
+        <div class="mt-12 text-center">
+          <p class="script text-2xl text-[#a87370]">Happy turnings my kimooda❤️❤️ I wish you nothing but beautiful things in this new chapter of your life. Keep shining,,keep growing,,keep dreaming and never forget that you deserve to be loved with kindness,,honesty,,patience and respect.🎊🥳🥳🥳.</p>
+          <p class="text-xs tracking-widest text-[#b08d7d] mt-3">19 YEARS OF YOU · SO MUCH MORE TO COME</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Message -->
+    <section id="message" class="screen paper-texture min-h-screen px-4 py-8 sm:py-14">
+      <div class="max-w-2xl mx-auto">
+        <button class="back btn-outline rounded-full px-4 py-2 text-sm mb-7" data-go="dashboard">← Back to your gifts</button>
+        <div class="text-center mb-7">
+          <p class="uppercase tracking-[.25em] text-xs text-[#9a625e] mb-2">For the birthday girl</p>
+          <h2 class="text-4xl sm:text-5xl text-[#6e2630]">A letter for you</h2>
+          <p class="script text-3xl text-[#ad7472] mt-2">on your nineteenth ♡</p>
+        </div>
+        <article class="letter-paper rounded-sm p-6 sm:p-10">
+          <p class="script text-3xl text-[#8c3e48] mb-5">Dear my kimooda,</p>
+          <div class="space-y-5 text-[15px] sm:text-base leading-8 text-[#65484a]">
+            <p>Today is such a special day because it marks the beginning of another beautiful chapter in your life. Nineteen years ago the world was blessed with you and today I get the privilege of being part of your life as you celebrate another year of becoming the woman you are meant to be... Honestly I don't even know where to begin because there is so much I would love to tell you so many things I appreciate about you and many wishes I have for you as you step into this new year of your life..🥰🥰
+First,,I want you to know how special you are to me leave alone us getting to know each other a month ago😂...Not just because you're my favorite distraction or notification but because you're someone I genuinely care about,,someone whose happiness matters to me,,,someone whose dreams I want to see come true and someone whose tears I would never want to take lightly... I hope that in the little and big ways I show up for you,,, you get to feel just how much you mean to me. You don't have to be perfect to deserve love,, you don't have to have everything figured out to deserve patience and you don't have to pretend to be okay when you're not...With me I hope you can be yourself even on the days when life feels a little too heavy (tulisema usipofikia shoulders utalalia kifua😂). As you turn 19, I know you're stepping into a season filled with new experiences,,new responsibilities,,new dreams and perhaps a few uncertainties. There will be days when everything feels like it's falling into place and there may be other days when you question yourself,,feel tired or wonder whether you're doing enough.,,On those days I want you to remember that you are still growing...You are allowed to make mistakes change your mind,,learn things the hard way and take your time figuring life out. You don't have to rush into becoming the woman you want to be. Just keep learning,,keep trying and keep believing that there is still so much good ahead of you.
+And my love,, as we continue with our relationship I want you to understand something about the kind of person I want to be in your life. I don't want to be just the person who tells you sweet words when everything is going well😭😭. I want to be someone you can genuinely count on. Someone who celebrates your wins without feeling threatened by your growth,,someone who listens when you need to talk and someone who stays patient enough to understand you even when finding the right words is difficult. I want to love you as your partner but I also want to be that elder-brother kind of presence in your life when you need guidance, wisdom, reassurance, or simply someone to remind you of your worth. I want to be a shoulder you can lean on when you feel exhausted,,a safe person to talk to when something is bothering you and a confidant with whom you can share the things you may not find easy to tell everyone else. I want you to know that you don't always have to carry everything alone.
+Of course I know I won't always get everything right. I'm still learning too. There may be moments when I misunderstand you,,when I say the wrong thing or when I don't immediately know what you need from me. But I hope we can always make room for honest conversations, patience, forgiveness, and understanding✨. I don't want us to build a relationship where either of us has to hide our feelings just to keep the peace. I want us to grow into two people who can speak honestly, learn from each other, respect one another and keep choosing to do better... I don't expect us to have a perfect relationship,,I don't think love means that we'll never disagree or never hurt each other's feelings. What I hope for is that even when we have difficult moments we remember that we are on the same side..it us against the problem not us against each other🤧❤️❤️. That we learn to understand rather than simply react to communicate rather than assume and to protect each other's hearts rather than use each other's weaknesses against one another. I want us to keep learning how to love each other in ways that feel safe,,honest and real❤️. I cannot promise easy days and I cannot pretend to know all that the future holds for us. But I promise to keep learning,, to keep talking,, to take your feelings seriously and to try my best to be someone you can trust. I am the person who makes your life peaceful,,who encourages you and who celebrates the woman you are becoming. I want to support you not control you..I want to guide you not decide your life for you. I want to stand beside you but never make you feel as though you have to earn your place in my life by being perfect.
+As you enter your final teenhood year,,my prayer is that life becomes a little kinder to you. I pray for good health, peace of mind, genuine happiness, wisdom, courage, and opportunities that bring you closer to the life you want🥰🥰🥰. I pray that the doors meant for you open at the right time, that you find strength when things become difficult, and that you never lose hope when the road ahead seems uncertain. I pray that you meet people who are sincere with you, that you learn to recognise your own worth, and that you always have reasons to smile, even when life doesn't go exactly as planned. I hope this year gives you beautiful memories,,lessons that make you wiser,,experiences that help you grow and moments that remind you how much you have to be grateful for. I hope you discover new things about yourself and become more confident in the person you are✨. I hope you stop doubting the good things about yourself and start seeing some of the beauty that the people who care about you already see.<em>You are not expected to have life all figured out at nineteen, my girl. You only need to keep becoming yourself, with patience, courage, and a heart that still believes in beautiful things. And I hope that in whatever ways life allows I get to witness that growth,,cheer you on through the challenges,,celebrate your achievements and remind you from time to time of how much potential you carry within you.</em>I want to be your partner in love, your friend in the little things, your shoulder on the difficult days, your confidant when you need someone to talk to, and a guiding presence when you need a little direction. Not because I believe I have all the answers, but because I care enough to keep showing up, keep learning, and keep growing alongside you.</p>
+          </div>
+          <p class="script text-3xl text-[#8c3e48] mt-8">With love, always ♡</p>
+          <div class="text-right text-2xl text-[#c58d82] mt-2">✿ ❧</div>
+        </article>
+        <p class="text-center script text-2xl text-[#ad7472] mt-7">You are loved more than words can say.</p>
+      </div>
+    </section>
+
+    <!-- Flowers -->
+    <section id="flowers" class="screen paper-texture min-h-screen px-4 py-8 sm:py-14">
+      <div class="max-w-3xl mx-auto">
+        <button class="back btn-outline rounded-full px-4 py-2 text-sm mb-7" data-go="dashboard">← Back to your gifts</button>
+        <header class="text-center mb-5">
+          <p class="uppercase tracking-[.25em] text-xs text-[#9a625e] mb-2">A bouquet of reminders</p>
+          <h2 class="text-4xl sm:text-5xl text-[#6e2630]">Flowers for you</h2>
+          <p class="script text-3xl text-[#ad7472] mt-2">pick a bloom, find a little truth</p>
+        </header>
+        <div class="rounded-3xl bg-[#fffaf1]/80 border border-[#ead9bf] p-4 sm:p-8">
+          <svg viewBox="0 0 600 400" role="img" aria-label="Illustrated bouquet with six clickable flowers" class="w-full max-w-xl mx-auto">
+            <defs><linearGradient id="stem" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#81916a"/><stop offset="1" stop-color="#4d7254"/></linearGradient></defs>
+            <path d="M300 350 Q275 270 190 150 M300 350 Q320 260 390 135 M300 350 Q300 250 300 115 M300 350 Q250 275 120 230 M300 350 Q350 275 475 220 M300 350 Q285 275 230 210" stroke="url(#stem)" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <g fill="#8fa17a"><ellipse cx="230" cy="255" rx="35" ry="12" transform="rotate(25 230 255)"/><ellipse cx="360" cy="270" rx="38" ry="12" transform="rotate(-25 360 270)"/><ellipse cx="270" cy="300" rx="32" ry="11" transform="rotate(25 270 300)"/><ellipse cx="335" cy="220" rx="31" ry="11" transform="rotate(-30 335 220)"/></g>
+            <g class="flower" tabindex="0" role="button" aria-label="Kindness" data-note="You are kind . your softness is a strength, never a weakness.There's beauty in people who have known the darkness but still choose to spread kindness wherever they go for me you're that person.. " transform="translate(190 130)">
+              <circle class="petal" cx="0" cy="-25" r="19"/><circle class="petal" cx="24" cy="-8" r="19"/><circle class="petal" cx="15" cy="20" r="19"/><circle class="petal" cx="-15" cy="20" r="19"/><circle class="petal" cx="-24" cy="-8" r="19"/><circle cx="0" cy="0" r="15" fill="#7b4b31"/><circle cx="-4" cy="-4" r="3" fill="#e8bd67"/>
+            </g>
+            <g class="flower" tabindex="0" role="button" aria-label="Strength" data-note="You are strong Jena even when you doubt yourself, you keep going... you've already met many versions of yourself and somehow you're still here " transform="translate(300 95)">
+              <circle class="petal rose" cx="0" cy="-24" r="19"/><circle class="petal rose" cx="23" cy="-7" r="19"/><circle class="petal rose" cx="14" cy="20" r="19"/><circle class="petal rose" cx="-14" cy="20" r="19"/><circle class="petal rose" cx="-23" cy="-7" r="19"/><circle cx="0" cy="0" r="14" fill="#e7b36a"/>
+            </g>
+            <g class="flower" tabindex="0" role="button" aria-label="Joy" data-note="You bring joy as your presence can make an ordinary moment feel special. If there's a slight chance at getting sth that will make you happy risk it...life's too short and happiness is rare." transform="translate(390 120)">
+              <circle class="petal cream" cx="0" cy="-24" r="18"/><circle class="petal cream" cx="23" cy="-7" r="18"/><circle class="petal cream" cx="14" cy="20" r="18"/><circle class="petal cream" cx="-14" cy="20" r="18"/><circle class="petal cream" cx="-23" cy="-7" r="18"/><circle cx="0" cy="0" r="14" fill="#815234"/>
+            </g>
+            <g class="flower" tabindex="0" role="button" aria-label="Beauty" data-note="You are beautiful .no matter what you think of about yourself everyday..always remember that you're seen,,you're the most beautiful sweetest,,loving and charming girl the world has seen...and it's a flex you should be proud of.." transform="translate(120 220)">
+              <circle class="petal rose" cx="0" cy="-22" r="17"/><circle class="petal rose" cx="21" cy="-6" r="17"/><circle class="petal rose" cx="13" cy="18" r="17"/><circle class="petal rose" cx="-13" cy="18" r="17"/><circle class="petal rose" cx="-21" cy="-6" r="17"/><circle cx="0" cy="0" r="12" fill="#e9b767"/>
+            </g>
+            <g class="flower" tabindex="0" role="button" aria-label="Worth" data-note="You are worthy of respect,,of rest and of love that feels safe and sincere." transform="translate(475 210)">
+              <circle class="petal" cx="0" cy="-22" r="17"/><circle class="petal" cx="21" cy="-6" r="17"/><circle class="petal" cx="13" cy="18" r="17"/><circle class="petal" cx="-13" cy="18" r="17"/><circle class="petal" cx="-21" cy="-6" r="17"/><circle cx="0" cy="0" r="12" fill="#815234"/>
+            </g>
+            <g class="flower" tabindex="0" role="button" aria-label="Possibility" data-note="Your story is still unfolding. there are so many lovely things ahead of you and I wish you became obsessed with the fact that your potential is endless and your ability to be anything and everything you want." transform="translate(230 200)">
+              <circle class="petal cream" cx="0" cy="-20" r="16"/><circle class="petal cream" cx="19" cy="-6" r="16"/><circle class="petal cream" cx="12" cy="16" r="16"/><circle class="petal cream" cx="-12" cy="16" r="16"/><circle class="petal cream" cx="-19" cy="-6" r="16"/><circle cx="0" cy="0" r="11" fill="#815234"/>
+            </g>
+            <path d="M260 315 Q300 335 340 315 L355 370 Q300 390 245 370Z" fill="#b75c65"/><path d="M260 315 Q300 350 340 315" stroke="#e9b7a4" stroke-width="5" fill="none"/><path d="M300 345 Q270 335 270 355 Q300 370 300 345 Q330 335 330 355 Q300 370 300 345" fill="#e9b7a4"/>
+          </svg>
+          <div id="flowerNote" class="flower-note rounded-xl bg-[#f6e9da] px-5 py-4 text-center text-[#79434a] mt-2" aria-live="polite">
+            <span class="script text-2xl">Choose any flower above ♡</span><p class="text-sm mt-1">There's a little reminder tucked inside each one.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scrapbook -->
+    <section id="memories" class="screen paper-texture min-h-screen px-4 py-8 sm:py-14">
+      <div class="max-w-5xl mx-auto">
+        <button class="back btn-outline rounded-full px-4 py-2 text-sm mb-7" data-go="dashboard">← Back to your gifts</button>
+        <header class="text-center mb-9">
+          <p class="uppercase tracking-[.25em] text-xs text-[#9a625e] mb-2">Little pieces of forever</p>
+          <h2 class="text-4xl sm:text-5xl text-[#6e2630]">The memory book</h2>
+          <p class="script text-3xl text-[#ad7472] mt-2">moments worth keeping 🌸</p>
+        </header>
+        <div id="photoGrid" class="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-7 items-start"></div>
+        <div class="mt-12 sm:mt-16 grid md:grid-cols-2 gap-8 items-center rounded-3xl bg-[#f1dfcd] border border-[#e2c7b0] p-6 sm:p-10">
+        <p class="text-center script text-2xl text-[#ad7472] mt-9">Some moments become memories. Some people become home.I hope you never forget to live your own life. Keep discovering yourself. Keep making friends, exploring your interests, laughing until your stomach hurts, trying new things, and finding the little things that make you happy. Keep your dreams alive. Never feel that you have to become smaller to make room for someone else and never feel that being loved means giving up the person you are becoming. I want to be part of your journey not the reason you stop exploring it. Your happiness, your growth, your peace, and your future matter.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer"><img alt=""><p class="script"></p></div>
+
+  <footer class="relative z-10 text-center text-xs tracking-wide text-[#b08d7d] py-6 bg-[#fff8ec]">And as you move through this new chapter please remember that you have someone who wants to see you win,,someone who wants to listen when you need to speak,,someone who will encourage you when you feel discouraged and someone who hopes to share both the ordinary and extraordinary moments of life with you❤️🎂🌹... ♡</footer>
+
+  <script>
+    // Add subtle floating decorations.
+    const floaties = document.getElementById('floaties');
+    const decorations = ['♡', '✿', '♥', '✧', '🎀'];
+    for (let i = 0; i < 18; i++) {
+      const el = document.createElement('span');
+      el.className = 'floating';
+      el.textContent = decorations[i % decorations.length];
+      el.style.left = `${Math.random() * 100}%`;
+      el.style.fontSize = `${12 + Math.random() * 17}px`;
+      el.style.animationDuration = `${13 + Math.random() * 17}s`;
+      el.style.animationDelay = `${-Math.random() * 25}s`;
+      el.style.color = ['#d9a4a1','#c99a65','#b66a72'][i % 3];
+      floaties.appendChild(el);
+    }
+
+    const screens = [...document.querySelectorAll('.screen')];
+    function showScreen(id) {
+      screens.forEach(screen => screen.classList.toggle('active', screen.id === id));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    document.querySelectorAll('[data-go]').forEach(button => {
+      button.addEventListener('click', () => showScreen(button.dataset.go));
+    });
+
+    const envelope = document.getElementById('openEnvelope');
+    envelope.addEventListener('click', () => {
+      if (envelope.classList.contains('open')) return;
+      envelope.classList.add('open');
+      document.getElementById('envelopeHint').textContent = 'Opening something special…';
+      startSong(); // the click is the user gesture browsers require for audio
+      setTimeout(() => showScreen('dashboard'), 850);
+    });
+
+    // Each flower reveals its own note. Keyboard users can activate with Enter/Space.
+    function revealFlower(flower) {
+      const note = document.getElementById('flowerNote');
+      note.innerHTML = `<span class="script text-2xl">${flower.getAttribute('aria-label')} ♡</span><p class="text-sm mt-1">${flower.dataset.note}</p>`;
+    }
+    document.querySelectorAll('.flower').forEach(flower => {
+      flower.addEventListener('click', () => revealFlower(flower));
+      flower.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          revealFlower(flower);
+        }
+      });
+    });
+    const photos = [
+      { file:'photos/photo 1.jpg  ',  caption:'the little things' },
+      { file:'photos/photo 2.jpg',  caption:'a day to remember' },
+      { file:'photos/photo 3.jpg',  caption:'sunshine moments' },
+      { file:'photos/photo 4.jpg',  caption:'radiating positive vibes everywhere' },
+      { file:'photos/photo 5.jpg',  caption:'just obsessed with you' },
+      { file:'photos/photo 6.jpg',  caption:'Her.Always her' },
+      { file:'photos/photo 7.jpg',  caption:'favorite view all time' },
+      { file:'photos/photo 8.jpg',  caption:'pretty face prettier soul' },
+      { file:'photos/photo 9.jpg',  caption:'wuuuuuuuuuuuiiiii' },
+      { file:'photos/photo 10.jpg', caption:'smile has it all' },
+      { file:'photos/photo 11.jpg', caption:'favorite distraction at her best' },
+      { file:'photos/photo 12.jpg', caption:'the smile and eyes are my weakness' },
+      { file:'photos/photo 13.jpg', caption:'first day and still falling today' },
+      { file:'photos/photo 14.jpg', caption:'my goof,peace,,my person' },
+      { file:'photos/photo 15.jpg', caption:'alllllllllllllllll mine' },
+      { file:'photos/photo 16.jpg', caption:'my pretty kimoooooda' }
+    ];
+    const tilts = [-4,3,2,-3,3,-2,4,-3,2,-4,3,-2,-3,2,4,-3];
+    const grid = document.getElementById('photoGrid');
+    const lightbox = document.getElementById('lightbox');
+    photos.forEach((p, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'polaroid w-full';
+      btn.style.setProperty('--tilt', tilts[i] + 'deg');
+      btn.setAttribute('aria-label', 'View photo: ' + p.caption);
+      const img = document.createElement('img');
+      img.src = p.file; img.alt = p.caption; img.loading = 'lazy';
+      img.onerror = () => { // photo missing: show the old placeholder instead of a broken icon
+        const ph = document.createElement('div');
+        ph.className = 'photo-placeholder'; ph.style.minHeight = '170px';
+        ph.innerHTML = '<span class="text-4xl">📷</span>';
+        img.replaceWith(ph); btn.dataset.missing = '1';
+      };
+      const cap = document.createElement('p');
+      cap.className = 'script text-xl text-[#78424a] mt-3'; cap.textContent = p.caption;
+      btn.append(img, cap);
+      btn.addEventListener('click', () => {
+        if (btn.dataset.missing) return;
+        lightbox.querySelector('img').src = p.file;
+        lightbox.querySelector('img').alt = p.caption;
+        lightbox.querySelector('p').textContent = p.caption;
+        lightbox.classList.add('show');
+      });
+      grid.appendChild(btn);
+    });
+    lightbox.addEventListener('click', () => lightbox.classList.remove('show'));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') lightbox.classList.remove('show'); });
+
+    const vinylPreview = document.getElementById('vinylPreview');
+    const vinylPlayer = document.getElementById('vinylPlayer');
+    const bgSong = document.getElementById('bgSong');
+    function setRecordSpin(playing) {
+      vinylPlayer.classList.toggle('playing', playing);
+      vinylPreview.querySelector('.vinyl').classList.toggle('playing', playing);
+      document.getElementById('recordHint').textContent = playing ? 'Spinning with love ♡' : 'Tap the record to play the song';
+    }
+    const muteBtn = document.getElementById('muteBtn');
+    muteBtn.addEventListener('click', () => {
+      bgSong.muted = !bgSong.muted;
+      muteBtn.classList.toggle('muted', bgSong.muted);
+      muteBtn.setAttribute('aria-pressed', bgSong.muted);
+      muteBtn.setAttribute('aria-label', bgSong.muted ? 'Unmute music' : 'Mute music');
+    });
+    function startSong() {
+      muteBtn.classList.add('show');
+      bgSong.volume = 0.7;
+      bgSong.play().then(() => setRecordSpin(true)).catch(() => setRecordSpin(false));
+    }
+    function toggleRecord() {
+      if (bgSong.paused) startSong();
+      else { bgSong.pause(); setRecordSpin(false); }
+    }
+    vinylPreview.addEventListener('click', () => { showScreen('song'); });
+    document.getElementById('openSong').addEventListener('click', () => showScreen('song'));
+    vinylPlayer.addEventListener('click', toggleRecord);
+  </script>
+</body>
+</html>
