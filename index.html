@@ -36,20 +36,40 @@
       background-position:center;
       background-repeat:no-repeat;
     }
-    .envelope-wrap { width:min(78vw,340px); aspect-ratio:1.35; position:relative; cursor:pointer; filter:drop-shadow(0 20px 22px #310d1770); transition:transform .6s ease; }
-    .envelope-wrap:hover { transform:translateY(-5px) rotate(-1deg); }
-    .envelope-body { position:absolute; inset:12% 0 0; background:#baa6db; border-radius:8px; overflow:hidden; }
-    .env-left,.env-right { position:absolute; bottom:0; width:0;height:0;border-top:150px solid transparent; }
-    .env-left { left:0;border-left:170px solid #af8fd3;border-bottom:0; }
-    .env-right { right:0;border-right:170px solid #d6a6d8;border-bottom:0; }
-    .env-bottom { position:absolute; bottom:0;left:0;width:0;height:0;border-left:170px solid transparent;border-right:170px solid transparent;border-bottom:145px solid #ded0f8; }
-    .env-flap { position:absolute;top:12%;left:0;width:0;height:0;border-left:170px solid transparent;border-right:170px solid transparent;border-top:125px solid #d9b98c; transform-origin:top; transition:transform .65s ease; z-index:4; }
-    .wax { position:absolute; z-index:5; top:52%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#c95a62,#7a1725 70%);box-shadow:inset 0 0 0 3px #d77b7b,0 5px 12px #50131d40;display:grid;place-items:center;color:#f9dfc8;font-size:25px;transition:opacity .25s; }
-    .envelope-wrap.open .env-flap { transform:rotateX(180deg); z-index:1; }
-    .envelope-wrap.open .wax { opacity:0; }
-    .envelope-wrap.open { animation:openEnvelope .15s .35s forwards; }
-    @keyframes openEnvelope { to {opacity:0;transform:translateY(-35px) scale(.85);visibility:hidden} }
-    
+    .envelope-wrap {
+      position: relative;
+      width: min(80vw, 300px);
+      aspect-ratio: 1.6;
+      background: linear-gradient(145deg, #3a1c2e, #53233b);
+      border: 2px solid #e8a9b860;
+      border-radius: 20px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: envelopeFloat 3s ease-in-out infinite;
+    }
+
+    .envelope-wrap:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(232, 169, 184, 0.25);
+    }
+
+    .envelope-wrap.open {
+      animation: envelopeOpen 0.7s ease-in forwards;
+      pointer-events: none;
+    }
+
+    @keyframes envelopeFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes envelopeOpen {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.8) translateY(-30px); opacity: 0; }
+    }
 /* Individual dashboard card colours */
 .dashboard-card {
   background: #fff0f5;
@@ -306,6 +326,40 @@
     transition-duration: 0.01ms;
   }
 }
+
+/* Initial active motion state */
+    .envelope-wrap {
+      position: relative;
+      width: min(78vw, 340px);
+      aspect-ratio: 1.35;
+      cursor: pointer;
+      filter: drop-shadow(0 20px 22px #310d1770);
+      transition: transform 0.6s ease;
+      animation: driftAround 4s ease-in-out infinite;
+    }
+
+    /* State after the timer ends: settles centrally and floats gently */
+    .envelope-wrap.centered {
+      animation: gentleFloat 3s ease-in-out infinite !important;
+    }
+
+    @keyframes driftAround {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(0.95);
+      }
+      50% {
+        transform: translateY(-15px) rotate(3deg) scale(1.02);
+      }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(-1deg);
+      }
+    }
   </style>
 </head>
 <body>
@@ -326,9 +380,11 @@
       <h1 class="script text-6xl sm:text-8xl leading-tight mb-2">sweet 19 my goof</h1>
       <p class="text-sm sm:text-base text-rose-100/90 mb-10">Today I don't want you to spend too much time thinking about responsibilities,,school,,the future,,or all the things you still need to accomplish. Today is your day my love(ujibambe yako yote unaskiaaaa). Take a moment to appreciate yourself,,celebrate how far you've come. Smile a little more, laugh a little louder, enjoy the people who care about you, and let yourself feel special. You deserve to celebrate the life you've lived so far and the many possibilities waiting ahead of you.♡</p>
       <button id="openEnvelope" class="envelope-wrap" aria-label="Open your birthday letter">
-        <div class="envelope-body"></div><div class="env-left"></div><div class="env-right"></div><div class="env-bottom"></div><div class="env-flap"></div><div class="wax">♥</div>
+        <div class="text-center p-6">
+          <div class="text-4xl mb-2">💌</div>
+          <p class="script text-3xl text-[#f4c9e8]">hutia haha wanie🤧🥳🥳🎂</p>
+        </div>
       </button>
-      <p id="envelopeHint" class="mt-8 text-sm tracking-wide text-rose-100/90 animate-pulse">Hutia hauu waniee</p>
       <div class="absolute bottom-6 text-xs text-rose-100/60 tracking-widest">MADE WITH LOVE · FOR YOUR 19TH</div>
     </section>
 
@@ -444,13 +500,14 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
     <section id="memories" class="screen paper-texture min-h-screen px-4 py-8 sm:py-14 relative overflow-hidden">
       
       <!-- Background Video Layer -->
-      <div class="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-100">
-          <source src="photos/jena.mp4`" type="video/mp4">
-        </video>
-        <!-- Optional dark color overlay to keep text readable -->
-        <div class="absolute inset-0 bg-[#26111c]/60"></div>
-      </div>
+      <!-- Background Video Layer -->
+<div class="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+  <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30">
+    <source src="photos/jena.mp4  " type="video/mp4">
+  </video>
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-[#26111c]/60"></div>
+</div>
 
       <!-- Content wrapper (ensures your memories content sits above the video) -->
       <div class="max-w-5xl mx-auto relative z-10">
@@ -474,7 +531,7 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
   <script>
     // Add subtle floating decorations.
     const floaties = document.getElementById('floaties');
-    const decorations = ['♡', '✿', '♥', '✧', '🎀'];
+    const decorations = ['💕', '🌺🌸🌹', '♥', '✧', '🎀'];
     for (let i = 0; i < 18; i++) {
       const el = document.createElement('span');
       el.className = 'floating';
@@ -524,9 +581,9 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
       { file:'photos/photo 2.jpg',  caption:'a day to remember' },
       { file:'photos/photo 3.jpg',  caption:'sunshine moments' },
       { file:'photos/photo 4.jpg',  caption:'radiating positive vibes everywhere' },
-      { file:'photos/photo 5.jpg',  caption:'just obsessed with you' },
+      { file:'photos/photo 7.jpg',  caption:'just obsessed with you' },
       { file:'photos/photo 6.jpg',  caption:'Her.Always her' },
-      { file:'photos/photo 7.jpg',  caption:'favorite view all time' },
+      { file:'photos/photo 20.jpg',  caption:'favorite view all time' },
       { file:'photos/photo 8.jpg',  caption:'pretty face prettier soul' },
       { file:'photos/photo 9.jpg',  caption:'wuuuuuuuuuuuiiiii' },
       { file:'photos/photo 10.jpg', caption:'smile has it all' },
@@ -538,11 +595,12 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
       { file:'photos/photo 16.jpg', caption:'my pretty kimoooooda' },
       { file:'photos/photo 17.jpg', caption:'nineteen and glowing' },
       { file:'photos/photo 18.jpg', caption:'my favorite human' },
-      { file:'photos/photo 19.jpg', caption:'here is to forever' }
+      { file:'photos/photo 19.jpg', caption:'here is to forever' },
+      { file:'photos/photo 5.jpg  ', caption:'my love, my life, my everything' }
     ];
     
-    // Updated tilt angles array to match all 19 photos
-    const tilts = [-4,3,2,-3,3,-2,4,-3,2,-4,3,-2,-3,2,4,-3,2,-2,3];
+    // Updated tilt angles array to match all 20 photos
+    const tilts = [-4,3,2,-3,3,-2,4,-3,2,-4,3,-2,-3,2,4,-3,2,-2,3,2];
     
     const grid = document.getElementById('photoGrid');
     const lightbox = document.getElementById('lightbox');
@@ -601,6 +659,14 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
     vinylPreview.addEventListener('click', () => { showScreen('song'); });
     document.getElementById('openSong').addEventListener('click', () => showScreen('song'));
     vinylPlayer.addEventListener('click', toggleRecord);
+    
+    // Make the envelope settle in the center after 4 seconds (4000 milliseconds)
+    const envelopeElement = document.getElementById('openEnvelope');
+    setTimeout(() => {
+      if (!envelopeElement.classList.contains('open')) {
+        envelopeElement.classList.add('centered');
+      }
+    }, 4000);
   </script>
 </body>
 </html>
