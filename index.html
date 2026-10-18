@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#26111c" />
-  <title>For Your 19th year ML ♡</title>
+  <title>For Your 19th year ML 💓💕</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,27 +42,111 @@
     .env-left,.env-right { position:absolute; bottom:0; width:0;height:0;border-top:150px solid transparent; }
     .env-left { left:0;border-left:170px solid #af8fd3;border-bottom:0; }
     .env-right { right:0;border-right:170px solid #d6a6d8;border-bottom:0; }
-    .env-bottom { position:absolute; bottom:0;left:0;width:0;height:0;border-left:170px solid transparent;border-right:170px solid transparent;border-bottom:145px solid #f8e9d0; }
+    .env-bottom { position:absolute; bottom:0;left:0;width:0;height:0;border-left:170px solid transparent;border-right:170px solid transparent;border-bottom:145px solid #ded0f8; }
     .env-flap { position:absolute;top:12%;left:0;width:0;height:0;border-left:170px solid transparent;border-right:170px solid transparent;border-top:125px solid #d9b98c; transform-origin:top; transition:transform .65s ease; z-index:4; }
     .wax { position:absolute; z-index:5; top:52%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#c95a62,#7a1725 70%);box-shadow:inset 0 0 0 3px #d77b7b,0 5px 12px #50131d40;display:grid;place-items:center;color:#f9dfc8;font-size:25px;transition:opacity .25s; }
     .envelope-wrap.open .env-flap { transform:rotateX(180deg); z-index:1; }
     .envelope-wrap.open .wax { opacity:0; }
-    .envelope-wrap.open { animation:openEnvelope .7s .35s forwards; }
+    .envelope-wrap.open { animation:openEnvelope .15s .35s forwards; }
     @keyframes openEnvelope { to {opacity:0;transform:translateY(-35px) scale(.85);visibility:hidden} }
-    .dashboard-card { background:#34192a; border:1px solid #5c3249; box-shadow:0 8px 25px #0000003a; transition:transform .25s,box-shadow .25s,border-color .25s; }
-    .dashboard-card:hover,.dashboard-card:focus-visible { transform:translateY(-7px) rotate(-1deg);box-shadow:0 16px 35px #e8a9b822;border-color:#e58fa6;outline:none; }
+    
+/* Individual dashboard card colours */
+.dashboard-card {
+  background: #fff0f5;
+  border: 1px solid #f3c6d7;
+  box-shadow: 0 8px 25px #5a273014;
+  transition: transform .3s ease, box-shadow .3s ease;
+  animation: cuteBounce 3s ease-in-out infinite;
+}
+
+/* Pink — A little letter */
+.grid > .dashboard-card:nth-child(1) {
+  background: #3f0101;
+  border-color: #061099;
+  animation-delay: 0s;
+}
+
+/* Lavender — Memories */
+.grid > .dashboard-card:nth-child(2) {
+  background: #0f3ccf;
+  border-color: #9805a5;
+  animation-delay: .35s;
+}
+
+/* Butter yellow — Birthday wishes */
+.grid > .dashboard-card:nth-child(3) {
+  background: #fff8dc;
+  border-color: #f0dfa0;
+  animation-delay: .7s;
+}
+
+/* Mint green — Your special moments */
+.grid > .dashboard-card:nth-child(4) {
+  background: #03579c;
+  border-color: #120991;
+  animation-delay: 1.05s;
+}
+
+/* Baby blue — Music */
+.grid > .dashboard-card:nth-child(5) {
+  background: #eaf5ff;
+  border-color: #bfdef8;
+  animation-delay: 1.4s;
+}
+
+/* Peach — Any additional card */
+.grid > .dashboard-card:nth-child(6) {
+  background: #fff0e6;
+  border-color: #f2c9ad;
+  animation-delay: 1.75s;
+}
+
+/* Gentle automatic bouncing */
+@keyframes cuteBounce {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -9px;
+  }
+}
+
+/* A little extra lift when touched or hovered */
+.dashboard-card:hover,
+.dashboard-card:focus-visible {
+  transform: scale(1.035) rotate(-1deg);
+  box-shadow: 0 16px 35px #5a273025;
+  outline: 2px solid #d7a4bb;
+  outline-offset: 2px;
+}
+
+/* Respect visitors who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-card {
+    animation: none;
+  }
+}
+
     .icon-disc { background:#552a3f; border:1px solid #7a4059; }
     .btn-wine { background:#c2506a;color:#5115c0;transition:all .2s; }
     .btn-wine:hover { background:#d8607b;transform:translateY(-1px); }
     .btn-outline { border:1px solid #8c566c;color:#f4b6c4;transition:all .2s; }
     .btn-outline:hover { background:#4a2538; }
-    .letter-paper { background:#0e0209; background-image:repeating-linear-gradient(transparent 0 35px,#2c0329 36px); box-shadow:0 12px 32px #0692e450; border:1px solid #6a3b57; }
+    .letter-paper {
+  background: #211725;
+  background-image: repeating-linear-gradient(
+    transparent 0 35px,
+    #3a2940 36px
+  );
+  box-shadow: 0 12px 32px #00000035;
+  border: 1px solid #745b80;
+}
     .flower { cursor:pointer; transition:transform .none; transform-origin:bottom center; }
     .flower:hover,.flower:focus-visible { transform:scale(1.12) rotate(-5deg);outline:none; }
     .petal { fill:#e7b44f; stroke:#c48a32; stroke-width:1.5; }
     .petal.rose { fill:#c96b76;stroke:#9c4050; }
     .petal.cream { fill:#f6dca0;stroke:#c79c58; }
-    .flower-note { min-height:64px;transition:opacity .2s; }
+    .flower-note { min-height:64px;transition:opacity .1s; }
     .polaroid { background:#f1dcd8;padding:10px 10px 35px;box-shadow:0 8px 20px #00000055;transform:rotate(var(--tilt,-3deg));transition:transform .25s;cursor:pointer; }
     .polaroid:hover { transform:rotate(0) translateY(-5px); }
     .photo-placeholder { min-height:135px;background:linear-gradient(145deg,#4a2a3a,#5c3449);display:grid;place-items:center;border:1px dashed #9a6479;color:#07b8cf; }
@@ -77,7 +161,7 @@
     .vinyl.playing { animation:spin 4s linear infinite; }
     .vinyl-label { width:35%;aspect-ratio:1;border-radius:50%;background:#b84c58;border:4px solid #e8b8a5;display:grid;place-items:center;color:#fff0d9;font-size:22px; }
     .music-visual { background:linear-gradient(145deg,#3a1c2e,#4a2440);border:1px solid #6a3b57; }
-    .tiny-heart { color:#d78a91; }
+    .tiny-heart { color:#eb103f; }
     .divider-flourish { display:flex;align-items:center;gap:12px;color:#2e6df5; }
     .divider-flourish:before,.divider-flourish:after { content:"";height:1px;background:#6a3b57;flex:1; }
     @media (prefers-reduced-motion: reduce) { *,*::before,*::after {animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important} }
@@ -89,10 +173,143 @@
     .mute-btn .icon-off { display:none; }
     .mute-btn.muted .icon-on { display:none; }
     .mute-btn.muted .icon-off { display:block; }
+
+    /* Envelope position and gentle floating motion */
+.envelope-wrap {
+  position: relative;
+  width: 230px;
+  height: 155px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  perspective: 900px;
+  animation: envelopeFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 14px 18px #170b1830);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Lift slightly when the visitor hovers */
+.envelope-wrap:not(.open):hover {
+  transform: translateY(-7px) scale(1.04);
+  filter: drop-shadow(0 20px 22px #170b1845);
+}
+
+/* Soft press effect */
+.envelope-wrap:not(.open):active {
+  transform: scale(0.97);
+}
+
+/* Envelope flap opens from the top edge */
+.env-flap {
+  transform-origin: top center;
+  backface-visibility: visible;
+  transition:
+    transform 0.75s cubic-bezier(.2, .75, .25, 1),
+    filter 0.5s ease;
+}
+
+/* Heart seal gently pulses */
+.wax {
+  animation: heartGlow 1.8s ease-in-out infinite;
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s ease;
+}
+
+/* Envelope opening sequence */
+.envelope-wrap.open {
+  animation: envelopeOpen 0.85s ease-in forwards;
+  pointer-events: none;
+}
+
+.envelope-wrap.open .env-flap {
+  transform: rotateX(180deg);
+  filter: brightness(1.12);
+}
+
+.envelope-wrap.open .wax {
+  opacity: 0;
+  transform: translateY(-18px) scale(0.4) rotate(20deg);
+}
+
+/* Floating hearts appear as the envelope opens */
+.envelope-wrap.open::after {
+  content: "♡  ✧  ♥";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -15px;
+  color: #f4c9e8;
+  font-size: 25px;
+  letter-spacing: 12px;
+  pointer-events: none;
+  animation: heartsRise 0.85s ease-out forwards;
+}
+
+/* Animation definitions */
+@keyframes envelopeFloat {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+@keyframes heartGlow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px #f4b8d8);
+  }
+  50% {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 9px #f4b8d8);
+  }
+}
+
+@keyframes envelopeOpen {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  45% {
+    transform: translateY(-12px) scale(1.05);
+  }
+  100% {
+    transform: translateY(-25px) scale(0.9);
+    opacity: 0.25;
+  }
+}
+
+@keyframes heartsRise {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.7);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-65px) scale(1.25);
+  }
+}
+
+/* Respect visitors who prefer less animation */
+@media (prefers-reduced-motion: reduce) {
+  .envelope-wrap,
+  .wax {
+    animation: none;
+  }
+
+  .env-flap,
+  .wax {
+    transition-duration: 0.01ms;
+  }
+}
   </style>
 </head>
 <body>
-  <audio id="bgSong" src="photos/BEE X AUGUST IV - SURE LIKE THIS (OFFICIAL LYRIC VIDEO) [JQBR11wu6iw].mp3" loop preload="auto"></audio>
+  <audio id="bgSong" src="photos/MIMI_NA_WEWE_-_@BridgetBlue___@NikitaKeringOfficial_lyrics(256k).mp3" loop preload="auto"></audio>
   <button id="muteBtn" class="mute-btn" type="button" aria-label="Mute music" aria-pressed="false">
     <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
     <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6"/><path d="M16 9l6 6"/></svg>
@@ -107,7 +324,7 @@
       <background image class="absolute inset-0 bg-cover bg-center opacity-30" style="background-image:url('photos/homepage bg.jpg  ');"></background>
       <p class="uppercase tracking-[.32em] text-xs sm:text-sm text-rose-100/80 mb-5">A little one just for you</p>
       <h1 class="script text-6xl sm:text-8xl leading-tight mb-2">sweet 19 my goof</h1>
-      <p class="text-sm sm:text-base text-rose-100/90 mb-10">Today, though, I don't want you to spend too much time thinking about responsibilities, school, the future, or all the things you still need to accomplish. Today is your day, my love. Take a moment to appreciate yourself. Celebrate how far you've come. Smile a little more, laugh a little louder, enjoy the people who care about you, and let yourself feel special. You deserve to celebrate the life you've lived so far and the many possibilities waiting ahead of you.♡</p>
+      <p class="text-sm sm:text-base text-rose-100/90 mb-10">Today I don't want you to spend too much time thinking about responsibilities,,school,,the future,,or all the things you still need to accomplish. Today is your day my love(ujibambe yako yote unaskiaaaa). Take a moment to appreciate yourself,,celebrate how far you've come. Smile a little more, laugh a little louder, enjoy the people who care about you, and let yourself feel special. You deserve to celebrate the life you've lived so far and the many possibilities waiting ahead of you.♡</p>
       <button id="openEnvelope" class="envelope-wrap" aria-label="Open your birthday letter">
         <div class="envelope-body"></div><div class="env-left"></div><div class="env-right"></div><div class="env-bottom"></div><div class="env-flap"></div><div class="wax">♥</div>
       </button>
@@ -152,8 +369,13 @@
     </section>
 
     <!-- Message -->
-    <section id="message" class="screen paper-texture min-h-screen px-4 py-8 sm:py-14">
+     <!-- Message -->
+<section id="message" class="screen min-h-screen px-4 py-8 sm:py-14 bg-cover bg-center bg-no-repeat relative" style="background-image: url('photos/photo 21.jpg ');">
+  <!-- Optional dark overlay so the text remains easy to read over the background image -->
+  <div class="absolute inset-0 bg-[#26111c]/80 pointer-events-none"></div>
+  <div class="max-w-2xl mx-auto relative z-10">
       <div class="max-w-2xl mx-auto">
+
         <button class="back btn-outline rounded-full px-4 py-2 text-sm mb-7" data-go="dashboard">← Back to your gifts</button>
         <div class="text-center mb-7">
           <p class="uppercase tracking-[.25em] text-xs text-[#9a625e] mb-2">For the birthday girl</p>
@@ -162,7 +384,7 @@
         </div>
         <article class="letter-paper rounded-sm p-6 sm:p-10">
           <p class="script text-3xl text-[#8c3e48] mb-5">Dear my kimooda,</p>
-          <div class="space-y-5 text-[15px] sm:text-base leading-8 text-[#65484a]">
+          <div class="space-y-5 text-[15px] sm:text-base leading-8 text-[#E6D6ED]"></div>
             <p>Today is such a special day because it marks the beginning of another beautiful chapter in your life. Nineteen years ago the world was blessed with you and today I get the privilege of being part of your life as you celebrate another year of becoming the woman you are meant to be... Honestly I don't even know where to begin because there is so much I would love to tell you so many things I appreciate about you and many wishes I have for you as you step into this new year of your life..🥰🥰
 First,,I want you to know how special you are to me leave alone us getting to know each other a month ago😂...Not just because you're my favorite distraction or notification but because you're someone I genuinely care about,,someone whose happiness matters to me,,,someone whose dreams I want to see come true and someone whose tears I would never want to take lightly... I hope that in the little and big ways I show up for you,,, you get to feel just how much you mean to me. You don't have to be perfect to deserve love,, you don't have to have everything figured out to deserve patience and you don't have to pretend to be okay when you're not...With me I hope you can be yourself even on the days when life feels a little too heavy (tulisema usipofikia shoulders utalalia kifua😂). As you turn 19, I know you're stepping into a season filled with new experiences,,new responsibilities,,new dreams and perhaps a few uncertainties. There will be days when everything feels like it's falling into place and there may be other days when you question yourself,,feel tired or wonder whether you're doing enough.,,On those days I want you to remember that you are still growing...You are allowed to make mistakes change your mind,,learn things the hard way and take your time figuring life out. You don't have to rush into becoming the woman you want to be. Just keep learning,,keep trying and keep believing that there is still so much good ahead of you.
 And my love,, as we continue with our relationship I want you to understand something about the kind of person I want to be in your life. I don't want to be just the person who tells you sweet words when everything is going well😭😭. I want to be someone you can genuinely count on. Someone who celebrates your wins without feeling threatened by your growth,,someone who listens when you need to talk and someone who stays patient enough to understand you even when finding the right words is difficult. I want to love you as your partner but I also want to be that elder-brother kind of presence in your life when you need guidance, wisdom, reassurance, or simply someone to remind you of your worth. I want to be a shoulder you can lean on when you feel exhausted,,a safe person to talk to when something is bothering you and a confidant with whom you can share the things you may not find easy to tell everyone else. I want you to know that you don't always have to carry everything alone.
@@ -218,8 +440,20 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
     </section>
 
     <!-- Scrapbook -->
-    <section id="memories" class="screen paper-texture min-h-screen px-4 py-8 sm:py-14">
-      <div class="max-w-5xl mx-auto">
+    <!-- Scrapbook -->
+    <section id="memories" class="screen paper-texture min-h-screen px-4 py-8 sm:py-14 relative overflow-hidden">
+      
+      <!-- Background Video Layer -->
+      <div class="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-100">
+          <source src="photos/jena.mp4`" type="video/mp4">
+        </video>
+        <!-- Optional dark color overlay to keep text readable -->
+        <div class="absolute inset-0 bg-[#26111c]/60"></div>
+      </div>
+
+      <!-- Content wrapper (ensures your memories content sits above the video) -->
+      <div class="max-w-5xl mx-auto relative z-10">
         <button class="back btn-outline rounded-full px-4 py-2 text-sm mb-7" data-go="dashboard">← Back to your gifts</button>
         <header class="text-center mb-9">
           <p class="uppercase tracking-[.25em] text-xs text-[#9a625e] mb-2">Little pieces of forever</p>
@@ -227,7 +461,7 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
           <p class="script text-3xl text-[#ad7472] mt-2">moments worth keeping 🌸</p>
         </header>
         <div id="photoGrid" class="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-7 items-start"></div>
-        <div class="mt-12 sm:mt-16 grid md:grid-cols-2 gap-8 items-center rounded-3xl bg-[#f1dfcd] border border-[#e2c7b0] p-6 sm:p-10">
+        <div class="mt-12 sm:mt-16 grid md:grid-cols-2 gap-8 items-center rounded-3xl bg-[#f1dfcd]/90 border border-[#e2c7b0] p-6 sm:p-10">
         <p class="text-center script text-2xl text-[#ad7472] mt-9">Some moments become memories. Some people become home.I hope you never forget to live your own life. Keep discovering yourself. Keep making friends, exploring your interests, laughing until your stomach hurts, trying new things, and finding the little things that make you happy. Keep your dreams alive. Never feel that you have to become smaller to make room for someone else and never feel that being loved means giving up the person you are becoming. I want to be part of your journey not the reason you stop exploring it. Your happiness, your growth, your peace, and your future matter.</p>
       </div>
     </section>
@@ -235,7 +469,7 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
 
   <div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer"><img alt=""><p class="script"></p></div>
 
-  <footer class="relative z-10 text-center text-xs tracking-wide text-[#b08d7d] py-6 bg-[#fff8ec]">And as you move through this new chapter please remember that you have someone who wants to see you win,,someone who wants to listen when you need to speak,,someone who will encourage you when you feel discouraged and someone who hopes to share both the ordinary and extraordinary moments of life with you❤️🎂🌹... ♡</footer>
+  <footer class="relative z-10 text-center text-sm tracking-wide text-[#E6D9EC] py-6 px-5 bg-[#38283F]">And as you move through this new chapter please remember that you have someone who wants to see you win,,someone who wants to listen when you need to speak,,someone who will encourage you when you feel discouraged and someone who hopes to share both the ordinary and extraordinary moments of life with you❤️🎂🌹... ♡</footer>
 
   <script>
     // Add subtle floating decorations.
@@ -286,7 +520,7 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
       });
     });
     const photos = [
-      { file:'photos/photo 1.jpg  ',  caption:'the little things' },
+      { file:'photos/photo 1.jpg',  caption:'the little things' },
       { file:'photos/photo 2.jpg',  caption:'a day to remember' },
       { file:'photos/photo 3.jpg',  caption:'sunshine moments' },
       { file:'photos/photo 4.jpg',  caption:'radiating positive vibes everywhere' },
@@ -301,9 +535,15 @@ As you enter your final teenhood year,,my prayer is that life becomes a little k
       { file:'photos/photo 13.jpg', caption:'first day and still falling today' },
       { file:'photos/photo 14.jpg', caption:'my goof,peace,,my person' },
       { file:'photos/photo 15.jpg', caption:'alllllllllllllllll mine' },
-      { file:'photos/photo 16.jpg', caption:'my pretty kimoooooda' }
+      { file:'photos/photo 16.jpg', caption:'my pretty kimoooooda' },
+      { file:'photos/photo 17.jpg', caption:'nineteen and glowing' },
+      { file:'photos/photo 18.jpg', caption:'my favorite human' },
+      { file:'photos/photo 19.jpg', caption:'here is to forever' }
     ];
-    const tilts = [-4,3,2,-3,3,-2,4,-3,2,-4,3,-2,-3,2,4,-3];
+    
+    // Updated tilt angles array to match all 19 photos
+    const tilts = [-4,3,2,-3,3,-2,4,-3,2,-4,3,-2,-3,2,4,-3,2,-2,3];
+    
     const grid = document.getElementById('photoGrid');
     const lightbox = document.getElementById('lightbox');
     photos.forEach((p, i) => {
